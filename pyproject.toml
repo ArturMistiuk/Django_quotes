@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "django-quotes"
+version = "0.1.0"
+description = ""
+authors = ["Artur Mistiuk <mistiuk.artur@gmail.com>"]
+readme = "README.md"
+packages = [{include = "django_quotes"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+django = "^4.2.2"
+psycopg2 = "^2.9.6"
+requests = "^2.31.0"
+beautifulsoup4 = "^4.12.2"
+lxml = "^4.9.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
