@@ -63,7 +63,6 @@ def run_parse():
         print(paginate_url)
         response = requests.get(paginate_url)
         soup = BeautifulSoup(response.text, 'lxml')
-
         quotes = soup.select('span.text')
         authors = soup.select('small.author')
         tags = soup.find_all('div', class_='tags')
