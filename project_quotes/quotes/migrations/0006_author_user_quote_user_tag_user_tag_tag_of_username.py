@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
             model_name="author",
             name="user",
             field=models.ForeignKey(
-                default=1,
+                default=2,
                 on_delete=django.db.models.deletion.CASCADE,
                 to=settings.AUTH_USER_MODEL,
             ),
@@ -25,7 +25,7 @@ class Migration(migrations.Migration):
             model_name="quote",
             name="user",
             field=models.ForeignKey(
-                default=1,
+                default=2,
                 on_delete=django.db.models.deletion.CASCADE,
                 to=settings.AUTH_USER_MODEL,
             ),
@@ -34,7 +34,7 @@ class Migration(migrations.Migration):
             model_name="tag",
             name="user",
             field=models.ForeignKey(
-                default=1,
+                default=2,
                 on_delete=django.db.models.deletion.CASCADE,
                 to=settings.AUTH_USER_MODEL,
             ),
