@@ -4,81 +4,74 @@ import os
 import requests
 
 from bs4 import BeautifulSoup
+from pathlib import Path
 
+base_url = 'http://quotes.toscrape.com/'
+PAGES = 3
+
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 JSON_FOLDER_PATH = os.path.join(os.path.dirname(os.getcwd()), 'utils')
-AUTHORS_JSON_PATH = os.path.join(JSON_FOLDER_PATH, 'authors.json')
-QUOTES_JSON_PATH = os.path.join(JSON_FOLDER_PATH, 'quotes.json')
+AUTHORS_JSON_PATH = os.path.join(BASE_DIR, 'quotes/utils/authors.json')
+QUOTES_JSON_PATH = os.path.join(BASE_DIR, 'quotes/utils/quotes.json')
 
 
-def save_authors_to_json(names, born_dates, born_locations, descriptions):
-
-    authors_list = []
-    for name, b_date, b_location, description in zip(names, born_dates, born_locations, descriptions):
-        author_dict = {
-            'fullname': name.text,
-            'born_date': str(b_date),
-            'born_location': str(b_location),
-            'description': str(description).replace('\n', '').strip()
-        }
-        authors_list.append(author_dict)
-
-    with open(AUTHORS_JSON_PATH, 'r', encoding='utf-8') as file:
-        history = json.load(file)
-        history.extend(authors_list)
+def save_authors_to_json(authors_info):
 
     with open(AUTHORS_JSON_PATH, 'w', encoding='utf-8') as file:
-        json.dump(history, file, indent=2, ensure_ascii=False)
+        json.dump(authors_info, file, indent=2, ensure_ascii=False)
 
 
-def save_quotes_to_json(authors_list, quotes_list, tags_list):
-    quotes_json_list = []
-
-    for i in range(len(quotes_list)):
-        tags_for_quote = tags_list[i].find_all('a', class_='tag')
-        quote_dict = {
-            'tags': [tag_for_quote.text for tag_for_quote in tags_for_quote],
-            'author': authors_list[i].text,
-            'quote': quotes_list[i].text
-        }
-        quotes_json_list.append(quote_dict)
-
-    with open(QUOTES_JSON_PATH, 'r', encoding='utf-8') as file:
-        history = json.load(file)
-        history.extend(quotes_json_list)
+def save_quotes_to_json(quotes):
 
     with open(QUOTES_JSON_PATH, 'w', encoding='utf-8') as file:
-        json.dump(history, file, indent=2, ensure_ascii=False)
+        json.dump(quotes, file, indent=2, ensure_ascii=False)
 
 
 def run_parse():
+    quotes = []
+    authors = []
 
-    authors_born_dates = []
-    authors_born_locations = []
-    authors_description = []
-
-    for page in range(1, 3):
-        base_url = 'https://quotes.toscrape.com/'
-        paginate_url = f"http://quotes.toscrape.com/page/{page}/"
-        print(paginate_url)
-        response = requests.get(paginate_url)
+    for i in range(1, PAGES + 1):
+        response = requests.get(f"{base_url}page/{i}/")
         soup = BeautifulSoup(response.text, 'lxml')
-        quotes = soup.select('span.text')
-        authors = soup.select('small.author')
-        tags = soup.find_all('div', class_='tags')
-        links_to_authors = soup.select('span a:not(.tag)')
 
-        # Get list with links to every author about page
-        for link in links_to_authors:
-            link.attrs['href'] = base_url + link.attrs['href']
-            response = requests.get(link.attrs['href'])
-            soup = BeautifulSoup(response.text, 'lxml')
-            authors_born_dates.append(soup.select('span.author-born-date')[0].text)
-            authors_born_locations.append(soup.select('span.author-born-location')[0].text)
-            authors_description.append(soup.select('div.author-description')[0].text)
+        for quote in soup.find_all("div", class_="quote"):
+            text = quote.find("span", class_="text").get_text()
+            tags = [tag.get_text() for tag in quote.find_all("a", class_="tag")]
+            author = quote.find("small", class_="author").get_text().strip()
+            author_url = quote.find("a", href=True).get('href').lstrip('/')
 
-        save_authors_to_json(authors, authors_born_dates, authors_born_locations, authors_description)
-        save_quotes_to_json(authors, quotes, tags)
+            quotes.append({
+                "tags": tags,
+                "author": author,
+                "quote": text
+            })
+
+            if author_url not in authors:
+                authors.append(author_url)
+
+    save_quotes_to_json(quotes)
+
+    authors_info = []
+    for author in authors:
+        response = requests.get(f"{base_url}{author}")
+        soup = BeautifulSoup(response.text, 'lxml')
+
+        fullname = soup.find("h3", class_="author-title").get_text().strip()
+        born_date = soup.find("span", class_="author-born-date").get_text().strip()
+        born_location = soup.find("span", class_="author-born-location").get_text().strip()
+        description = soup.find("div", class_="author-description").get_text().strip()
+
+        authors_info.append({
+            "fullname": fullname,
+            "born_date": born_date,
+            "born_location": born_location,
+            "description": description
+        })
+
+    save_authors_to_json(authors_info)
 
 
 if __name__ == '__main__':
