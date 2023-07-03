@@ -7,7 +7,7 @@ from .models import Quote, Tag, Author
 
 # Create your views here.
 def main(request):
-    quotes = Quote.objects.filter(user=request.user).all() if request.user.is_authenticated else []
+    quotes = Quote.objects.all()
     return render(request, 'quotes/index.html', {"quotes": quotes})
 
 
@@ -17,7 +17,7 @@ def add_tag(request):
         form = TagForm(request.POST)
         if form.is_valid():
             tag = form.save(commit=False)
-            tag.user = request.user
+            # tag.user = request.user
             tag.save()
             return redirect(to='quotes:main')
         else:
@@ -32,7 +32,7 @@ def add_author(request):
         form = AuthorForm(request.POST)
         if form.is_valid():
             new_author = form.save(commit=False)
-            new_author.user = request.user
+            # new_author.user = request.user
             new_author.save()
             return redirect(to='quotes:main')
         else:
@@ -47,10 +47,10 @@ def add_quote(request):
         form = QuoteForm(request.POST)
         if form.is_valid():
             new_quote = form.save(commit=False)
-            new_quote.user = request.user
+            # new_quote.user = request.user
             new_quote.save()
-            choice_tags = Tag.objects.filter(name__in=request.POST.getlist('tags'), user=request.user)
-            choice_author = Author.objects.filter(name__in=request.POST.getlist('author'), user=request.user)
+            # choice_tags = Tag.objects.filter(name__in=request.POST.getlist('tags'), user=request.user)
+            # choice_author = Author.objects.filter(name__in=request.POST.getlist('author'), user=request.user)
             return redirect(to='quotes:main')
         else:
             return render(request, 'quotes/quote.html', {'form': form})
