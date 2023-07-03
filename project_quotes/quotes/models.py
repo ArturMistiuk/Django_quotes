@@ -8,7 +8,6 @@ class Author(models.Model):
     born_date = models.CharField(max_length=120)
     born_location = models.CharField(max_length=120)
     description = models.TextField()
-    # user = models.ForeignKey(User, on_delete=models.CASCADE, default=2)
 
     def __str__(self):
         return f"{self.fullname}"
@@ -16,12 +15,6 @@ class Author(models.Model):
 
 class Tag(models.Model):
     name = models.CharField(max_length=120)
-    # user = models.ForeignKey(User, on_delete=models.CASCADE, default=2)
-
-    class Meta:
-        constraints = [
-           models.UniqueConstraint(fields=['user', 'name'], name='tag of username')
-        ]
 
     def __str__(self):
         return f"{self.name}"
@@ -31,7 +24,6 @@ class Quote(models.Model):
     quote = models.TextField()
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     tags = models.ManyToManyField(Tag)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default=2)
 
     def __str__(self):
         return f"{self.quote}"
