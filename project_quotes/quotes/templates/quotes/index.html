@@ -4,6 +4,8 @@
     <meta charset="UTF-8"/>
     <title>Organizer</title>
     <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"/>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'quotes/style.css' %}">
 </head>
 <body>
 <main class="container">
@@ -26,9 +28,39 @@
     {% endif %}
 </nav>
     {% for quote in quotes %}
-    <h2>{{ quote }}</h2>>
-    <h2>{{ quote.author }}</h2>>
+    <div class="quote" itemscope="" itemtype="http://schema.org/CreativeWork">
+        <span class="text" itemprop="text">{{ quote }}</span>
+        <span style="display: block;">
+            by <small class="author" itemprop="author">{{ quote.author }}</small>
+            <a href="/author/{{ quote.author.id }}">(about)</a>
+        </span>
+        <div>
+            Tags:
+            {% for tag in quote.tags.all %}
+            <a class="tag" href="/tag/{{ tag }}">{{ tag }}</a>
+            {% endfor %}
+        </div>
+    </div>
+    </div>
     {% endfor %}
+    <nav>
+        <ul class="pager">
+            <li class="previous">
+                <a class="{% if not quotes.has_previous %} disabled {% endif %}"
+                   href="{% if quotes.has_previous %}{% url 'quotes:root_paginate' quotes.previous_page_number %}{% else %} # {% endif %}">
+                    <span aria-hidden="true">←</span> Previous
+                </a>
+            </li>
+
+
+            <li class="next">
+                <a class="{% if not quotes.has_next %} disabled {% endif %}"
+                   href="{% if quotes.has_next %}{% url 'quotes:root_paginate' quotes.next_page_number %}{% else %}#{% endif %}">
+                   Next<span aria-hidden="true"></span></a>
+            </li>
+
+        </ul>
+    </nav>
 </main>
 </body>
 </html>
