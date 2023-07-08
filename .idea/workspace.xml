@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ab199731-ad86-45f0-9852-c5d65372f231" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/project_quotes/project_quotes/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/project_quotes/project_quotes/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_quotes/quotes/templates/quotes/author_detail.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_quotes/quotes/templates/quotes/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/project_quotes/quotes/templates/quotes/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_quotes/quotes/templates/quotes/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/project_quotes/quotes/templates/quotes/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_quotes/users/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/project_quotes/users/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_quotes/users/templates/users/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/project_quotes/users/templates/users/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_quotes/users/templates/users/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/project_quotes/users/templates/users/signup.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_quotes/users/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/project_quotes/users/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_quotes/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/project_quotes/users/views.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2Rp6WqX2Pzyh4GehVSd2uV84NyJ" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration name="save_to_db" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Django_quotes" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/project_quotes/quotes" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/project_quotes/quotes/save_to_db.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.save_to_db" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+      </list>
+    </option>
+  </component>
+</project>
