@@ -1,1 +1,1 @@
-# Django_quotes
+# Django quotes
